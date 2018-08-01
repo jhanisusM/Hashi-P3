@@ -9,6 +9,7 @@
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
     "install": "cd client && yarn install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
@@ -17,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/jhanisusM/Hashi-P3.git"
   },
-  "author": "Jaylee Maruk",
+  "author": "Hashi",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
@@ -31,6 +32,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "mongoose": "^5.2.5"
+    "mongoose": "^5.2.5",
+    "routes": "^2.1.0"
   }
 }
