@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const db = require("../models");
+const db = require("../model");
 
 mongoose.connect(
     process.env.MONGODB_URI ||
@@ -142,7 +142,7 @@ const horseSeed = [
 
 db.Horse
     .remove({})
-    .then(() => db.Book.collection.insertMany(horseSeed))
+    .then(() => db.Horse.collection.insertMany(horseSeed))
     .then(data => {
         console.log(data.result.n + " records inserted!");
         process.exit(0);

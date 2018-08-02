@@ -6,7 +6,7 @@ const horseSchema = new Schema({
   sire: { type: String, required: true },
   mare: String,
   gender: String,
-  Age: Number,
+  age: Number,
   date: { type: Date, default: Date.now }
 });
 
