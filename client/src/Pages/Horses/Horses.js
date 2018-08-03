@@ -58,13 +58,51 @@ class Horses extends Component {
         }
     };
 
+
+    weanlings = () => {
+        const weanlings = this.state.horses.filter(horse => (horse.age >= 5));
+        return (
+            <List>
+                {weanlings.map(horse => (
+                    <ListItem key={horse._id}>
+                        <Link to={"/horses/" + horse._id}>
+                            <strong>
+                                {horse.name} by {horse.sire}
+                            </strong>
+                        </Link>
+                        <DeleteBtn onClick={() => this.deleteHorse(horse._id)} />
+                    </ListItem>
+                ))}
+            </List>
+        )
+    };
+
+
+    yearlings = () => {
+        const yearlings = this.state.horses.filter(horse => (horse.age < 5));
+        return (
+            <List>
+                {yearlings.map(horse => (
+                    <ListItem key={horse._id}>
+                        <Link to={"/horses/" + horse._id}>
+                            <strong>
+                                {horse.name} by {horse.sire}
+                            </strong>
+                        </Link>
+                        <DeleteBtn onClick={() => this.deleteHorse(horse._id)} />
+                    </ListItem>
+                ))}
+            </List>
+        )
+    };
+
+
     render() {
         return (
             <Row>
                 <h1></h1>
                 <h1> Horses db</h1>
-                {console.log(this.state.horses)}
-                <Col size="md-6">
+                <Col size="md-6 sm-12">
                     <Jumbotron>
                         <h1>Add a Horse </h1>
                     </Jumbotron>
@@ -117,7 +155,7 @@ class Horses extends Component {
                                 <ListItem key={horse._id}>
                                     <Link to={"/horses/" + horse._id}>
                                         <strong>
-                                            {horse.name} by {horse.sire}
+                                            {horse.name} by {horse.sire} {horse.age}
                                         </strong>
                                     </Link>
                                     <DeleteBtn onClick={() => this.deleteHorse(horse._id)} />
@@ -129,25 +167,11 @@ class Horses extends Component {
                         )}
                 </Col>
 
-
                 <Col size="md-6 sm-12">
                     <Jumbotron>
                         <h1>Weanlings</h1>
                     </Jumbotron>
-                    {this.state.horses ? (
-                        <List>
-                            {this.state.horses.map(horse => (
-                                <ListItem key={horse._id}>
-                                    <Link to={"/horses/" + horse._id}>
-                                        <strong>
-                                            {horse.name} by {horse.sire}
-                                        </strong>
-                                    </Link>
-                                    <DeleteBtn onClick={() => this.deleteHorse(horse._id)} />
-                                </ListItem>
-                            ))}
-                        </List>
-                    ) : (
+                    {this.state.horses ? ( <div>{this.weanlings()}</div>) : (
                             <h3>No Results to Display</h3>
                         )}
                 </Col>
@@ -155,26 +179,10 @@ class Horses extends Component {
                     <Jumbotron>
                         <h1>Yearlings</h1>
                     </Jumbotron>
-                    {this.state.horses ? (
-                        <List>
-                            {this.state.horses.map(horse => (
-                                <ListItem key={horse._id}>
-                                    <Link to={"/horses/" + horse._id}>
-                                        <strong>
-                                            {horse.name} by {horse.sire}
-                                        </strong>
-                                    </Link>
-                                    <DeleteBtn onClick={() => this.deleteHorse(horse._id)} />
-                                </ListItem>
-                            ))}
-                        </List>
-                    ) : (
+                    {this.state.horses ? ( <div>{this.yearlings()}</div>) : (
                             <h3>No Results to Display</h3>
                         )}
                 </Col>
-
-
-
 
             </Row>
         );
