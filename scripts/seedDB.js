@@ -150,7 +150,7 @@ db.Horse
     .catch(err => {
         console.error(err);
         process.exit(1);
-    });
+});
     
 // 2, G, Jockers Wild, Lovango, Pleasant Guest
 // 2, C, Stroll Daddy, Stroll, She's all Scat
