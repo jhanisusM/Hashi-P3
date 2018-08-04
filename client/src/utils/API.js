@@ -9,6 +9,16 @@ export default {
   getHorse: function(id) {
     return axios.get("/api/horses/" + id);
   },
+  getHorseByName: function(name) {
+    return axios.get("/api/horses/name/" + name);
+  },
+  getHorseBySire: function(name) {
+    return axios.get("/api/horses/name/" + name);
+  },
+  getHorseByMare: function(name) {
+    return axios.get("/api/horses/name/" + name);
+  },
+
   // Deletes the book with the given id
   deleteHorse: function(id) {
     return axios.delete("/api/horses/" + id);
@@ -17,4 +27,8 @@ export default {
   saveHorse: function(horseData) {
     return axios.post("/api/horses", horseData);
   }
+
 };
+
+
+

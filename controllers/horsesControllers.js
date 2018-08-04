@@ -15,6 +15,25 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findByName: function(req, res) {
+    console.log(req.params)
+    db.Horse
+      .findOne({name: req.params.name})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findBySire: function(req, res) {
+    db.Horse
+      .findOne({name:req.params.sire})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findByMare: function(req, res) {
+    db.Horse
+      .find({name:req.params.mare})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   create: function(req, res) {
     db.Horse
       .create(req.body)
