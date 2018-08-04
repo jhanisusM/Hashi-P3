@@ -11,7 +11,7 @@ import { throws } from "assert";
 
 class Horses extends Component {
     state = {
-        Horses: [],
+        horses: [],
         foundHorse: [],
         name: "",
         sire: "",
@@ -27,7 +27,7 @@ class Horses extends Component {
     loadHorses = () => {
         API.getHorses()
             .then(res =>
-                this.setState({ horses: res.data, name: "", sire: "", mare: "", gender: "", age: "" })
+                this.setState({ horses: res.data, foundHorse: [], name: "", sire: "", mare: "", gender: "", age: "" })
             )
             .catch(err => console.log(err));
     };
@@ -61,48 +61,11 @@ class Horses extends Component {
         }
     };
 
-    searchByName = (event) => {
-        event.preventDefault();
-        API.getHorseByName(this.state.name)
-            .then(res => {
-                this.setState({ foundHorse: [res.data] });
-            }).catch(err => console.log(err));
-    };
-
-    renderSearchResults = () => {
-        return (
-            <List>
-                {console.log("------")}
-                {this.state.foundHorse.map(Horses => (
-                    <ListItem key={Horses._id}>
-                        <Link to={"/horses/" + Horses._id}>
-                            <strong>
-                                {Horses.name} by {Horses.sire} {Horses.age}
-                            </strong>
-                        </Link>
-                        <DeleteBtn onClick={() => this.deleteHorse(Horses._id)} />
-                    </ListItem>
-                ))}
-            </List>)
-    };
-
-
-
-
-    searchBySire = event => {
-        event.preventDefault();
-        API.getHorseBySire(this.state.name)
-            .then(res => {
-                this.setState({ foundHorse: [res.data] });
-            }).catch(err => console.log(err));
-
-    };
-
     searchByMare = event => {
         event.preventDefault();
         API.getHorseByMare(this.state.name)
             .then(res => {
-                this.setState({ foundHorse: [res.data] });
+                this.setState({ foundHorse: [res.data], horses: [], name: "", sire: "", mare: "", gender: "", age: "" });
             }).catch(err => console.log(err));
     };
 
@@ -126,10 +89,133 @@ class Horses extends Component {
         )
     };
 
+    searchByName = (event) => {
+        event.preventDefault();
+        API.getHorseByName(this.state.name)
+            .then(res => {
+                this.setState({ foundHorse: [res.data] });
+            }).catch(err => console.log(err));
+    };
+
+
+
+    searchBySire = (event) => {
+        event.preventDefault();
+        API.getHorseBySire(this.state.sire)
+            .then(res => {
+                this.setState({ foundHorse: res.data, horses: [], name: "", sire: "", mare: "", gender: "", age: "" });
+            }).catch(err => console.log(err));
+    };
+
+    searchByMare = (event) => {
+        event.preventDefault();
+        API.getHorseByMare(this.state.mare)
+            .then(res => {
+                this.setState({ foundHorse: res.data, horses: [], name: "", sire: "", mare: "", gender: "", age: "" });
+            }).catch(err => console.log(err));
+    };
+
+
+
+    renderSearchResults = () => {
+        return (
+            <List>
+                {this.state.foundHorse.map(Horses => (
+                    <ListItem key={Horses._id}>
+                        <Link to={"/horses/" + Horses._id}>
+                            <strong>
+                                {Horses.name} by {Horses.sire} {Horses.age}
+                            </strong>
+                        </Link>
+                        <DeleteBtn onClick={() => this.deleteHorse(Horses._id)} />
+                    </ListItem>
+                ))}
+            </List>
+        )
+    };
 
     render() {
         return (
             <Row>
+
+
+
+
+                {/* 
+                Search by MARE: 
+                This form searches the db by MARE only.
+                ------------------------------------ */
+                }
+                <Col size="md-6 sm-12">
+                    <Jumbotron>
+                        <h1>Search by Mare </h1>
+                    </Jumbotron>
+                    <form>
+                        <Input
+                            value={this.state.mare}
+                            onChange={this.handleInputChange}
+                            name="mare"
+                            placeholder="Mare (required)"
+                        />
+                        <FormBtn
+                            disabled={!(this.state.mare)}
+                            onClick={this.searchByMare}
+                        >
+                            Search
+                        </FormBtn>
+                    </form>
+                    <br />
+                    {this.state.foundHorse.length ? (
+                        <div>
+                            {this.renderSearchResults()}
+                        </div>
+                    ) : (
+                            <h3>No Results to Display</h3>
+                        )}
+                </Col>
+                {/* 
+        End of searchByMare
+        *******************************************/
+                }
+
+
+                {/* 
+                Search by SIRE: 
+                This form searches the db by Sire only.
+                ------------------------------------ */
+                }
+                {/* <Col size="md-6 sm-12">
+                    <Jumbotron>
+                        <h1>Search by Sire </h1>
+                    </Jumbotron>
+                    <form>
+                        <Input
+                            value={this.state.sire}
+                            onChange={this.handleInputChange}
+                            name="sire"
+                            placeholder="Sire (required)"
+                        />
+                        <FormBtn
+                            disabled={!(this.state.sire)}
+                            onClick={this.searchBySire}
+                        >
+                            Search
+          </FormBtn>
+                    </form>
+                    <br />
+                    {this.state.foundHorse.length ? (
+                        <div>
+                            {this.renderSearchResults()}
+                        </div>
+                    ) : (
+                            <h3>No Results to Display</h3>
+                        )}
+                </Col> */}
+                {/* 
+            End of searchBySire
+            *******************************************/
+                }
+
 
                 {/* 
                 Search by NAME: 
@@ -169,50 +255,7 @@ class Horses extends Component {
                 }
 
 
-
-
-
                 {/* 
-                Search by NAME: 
-                This form searches the db by NAME only.
-                ------------------------------------ */
-                }
-                <Col size="md-6 sm-12">
-                    <Jumbotron>
-                        <h1>Search by Sire </h1>
-                    </Jumbotron>
-                    <form>
-                        <Input
-                            value={this.state.sire}
-                            onChange={this.handleInputChange}
-                            name="sire"
-                            placeholder="Sire (required)"
-                        />
-                        <FormBtn
-                            disabled={!(this.state.sire)}
-                            onClick={this.searchBySire}
-                        >
-                            Search
-          </FormBtn>
-                    </form>
-                    <br />
-                    {this.state.foundHorse.length ? (
-                        <div>
-                            {this.renderSearchResults()}
-                        </div>
-                    ) : (
-                            <h3>No Results to Display</h3>
-                        )}
-                </Col>
-                {/* 
-            End of searchByName
-            *******************************************/
-                }
-
-
-
-
-               {/* 
                 Add a Horse form: 
                 This form adds a HORSE to the db.
                 ------------------------------------ */
@@ -269,11 +312,7 @@ class Horses extends Component {
                 }
 
 
-
-
-
-
-                {/* 
+              {/* 
                 Code of BLock displays ALL DB of Caballus: 
                 ------------------------------------ */
                 }
@@ -305,9 +344,6 @@ class Horses extends Component {
 
 
 
-
-
-
                 {/* 
                 Code of BLock displays Weanlings: 
                 ------------------------------------ */
@@ -324,10 +360,6 @@ class Horses extends Component {
 
                 {/* End of Weanlings
                 ******************************************* */}
-
-
-
-
 
 
 

@@ -24,13 +24,14 @@ module.exports = {
   },
   findBySire: function(req, res) {
     db.Horse
-      .findOne({name:req.params.sire})
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+    .find({sire:req.params.sire})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
   },
   findByMare: function(req, res) {
+    console.log('I"M Being activated  Mare!!!!')
     db.Horse
-      .find({name:req.params.mare})
+      .find({mare:req.params.mare})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

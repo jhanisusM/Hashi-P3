@@ -16,7 +16,7 @@ router.route("/name/:name")
   .get(horsesController.findByName);
 router.route("/sire/:sire")
   .get(horsesController.findBySire);
-router.route("/mare/:Mare")
+router.route("/mare/:mare")
   .get(horsesController.findByMare);
 
 

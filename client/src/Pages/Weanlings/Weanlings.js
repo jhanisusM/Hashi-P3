@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { List, ListItem } from "../../components/List";
 import Jumbotron from "../../components/Jumbotron";
+import { Row } from "../../components/Grid";
 
 
 
@@ -26,6 +27,32 @@ class Weanlings extends Component {
 
         )
     };
+
+
+
+    render() {
+        return (
+            <Row>
+
+                {/* 
+                Code of BLock displays Weanlings: 
+                ------------------------------------ */
+                }
+
+                <Col size="md-6 sm-12">
+                    <Jumbotron>
+                        <h1>Weanlings</h1>
+                    </Jumbotron>
+                    {this.state.horses ? (<div>{this.weanlings()}</div>) : (
+                        <h3>No Results to Display</h3>
+                    )}
+                </Col>
+
+                {/* End of Weanlings
+            ******************************************* */}
+            </Row>
+        )
+    }
 
 };
 

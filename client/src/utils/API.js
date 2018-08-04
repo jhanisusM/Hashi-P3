@@ -12,10 +12,10 @@ export default {
   getHorseByName: function(name) {
     return axios.get("/api/horses/name/" + name);
   },
-  getHorseBySire: function(name) {
+  getHorseBySire: function(sire) {
     return axios.get("/api/horses/sire/" + sire);
   },
-  getHorseByMare: function(name) {
+  getHorseByMare: function(mare) {
     return axios.get("/api/horses/mare/" + mare);
   },
 
