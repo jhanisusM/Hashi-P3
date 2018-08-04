@@ -59,23 +59,7 @@ class Horses extends Component {
     };
 
 
-    weanlings = () => {
-        const weanlings = this.state.horses.filter(horse => (horse.age >= 5));
-        return (
-            <List>
-                {weanlings.map(horse => (
-                    <ListItem key={horse._id}>
-                        <Link to={"/horses/" + horse._id}>
-                            <strong>
-                                {horse.name} by {horse.sire}
-                            </strong>
-                        </Link>
-                        <DeleteBtn onClick={() => this.deleteHorse(horse._id)} />
-                    </ListItem>
-                ))}
-            </List>
-        )
-    };
+
 
 
     yearlings = () => {
