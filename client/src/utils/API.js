@@ -9,7 +9,17 @@ export default {
   getHorse: function(id) {
     return axios.get("/api/horses/" + id);
   },
-  // Deletes the horse with the given id
+  getHorseByName: function(name) {
+    return axios.get("/api/horses/name/" + name);
+  },
+  getHorseBySire: function(name) {
+    return axios.get("/api/horses/sire/" + sire);
+  },
+  getHorseByMare: function(name) {
+    return axios.get("/api/horses/mare/" + mare);
+  },
+
+  // Deletes the Horse  with the given id
   deleteHorse: function(id) {
     return axios.delete("/api/horses/" + id);
   },
@@ -17,4 +27,8 @@ export default {
   saveHorse: function(horseData) {
     return axios.post("/api/horses", horseData);
   }
+
 };
+
+
+
