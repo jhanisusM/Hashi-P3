@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
+
 const Navbar = () => (
   <ul className="nav nav-tabs">
        <li className="nav-item">
@@ -76,5 +77,6 @@ const Navbar = () => (
       </li>
     </ul>
   );
+
 
 export default Navbar;

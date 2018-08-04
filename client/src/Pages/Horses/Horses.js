@@ -6,11 +6,13 @@ import Jumbotron from "../../components/Jumbotron";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import DeleteBtn from "../../components/DeleteBtn";
+import { throws } from "assert";
 
 
 class Horses extends Component {
     state = {
         Horses: [],
+        foundHorse: [],
         name: "",
         sire: "",
         mare: "",
@@ -45,6 +47,7 @@ class Horses extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+        console.log(event.name)
         if (this.state.name && this.state.sire) {
             API.saveHorse({
                 name: this.state.name,
@@ -58,7 +61,50 @@ class Horses extends Component {
         }
     };
 
+    searchByName = (event) => {
+        event.preventDefault();
+        API.getHorseByName(this.state.name)
+            .then(res => {
+                this.setState({ foundHorse: [res.data] });
+            }).catch(err => console.log(err));
+    };
 
+    renderSearchResults = () => {
+        return (
+            <List>
+                {console.log("------")}
+                {this.state.foundHorse.map(Horses => (
+                    <ListItem key={Horses._id}>
+                        <Link to={"/horses/" + Horses._id}>
+                            <strong>
+                                {Horses.name} by {Horses.sire} {Horses.age}
+                            </strong>
+                        </Link>
+                        <DeleteBtn onClick={() => this.deleteHorse(Horses._id)} />
+                    </ListItem>
+                ))}
+            </List>)
+    };
+
+
+
+
+    searchBySire = event => {
+        event.preventDefault();
+        API.getHorseBySire(this.state.name)
+            .then(res => {
+                this.setState({ foundHorse: [res.data] });
+            }).catch(err => console.log(err));
+
+    };
+
+    searchByMare = event => {
+        event.preventDefault();
+        API.getHorseByMare(this.state.name)
+            .then(res => {
+                this.setState({ foundHorse: [res.data] });
+            }).catch(err => console.log(err));
+    };
 
 
 
@@ -84,9 +130,96 @@ class Horses extends Component {
     render() {
         return (
             <Row>
-                <h1></h1>
-                <h1> Horses db</h1>
+
+                {/* 
+                Search by NAME: 
+                This form searches the db by NAME only.
+                ------------------------------------ */
+                }
+                {/* <Col size="md-6 sm-12">
+                    <Jumbotron>
+                        <h1>Search by name </h1>
+                    </Jumbotron>
+                    <form>
+                        <Input
+                            value={this.state.name}
+                            onChange={this.handleInputChange}
+                            name="name"
+                            placeholder="Name (required)"
+                        />
+                        <FormBtn
+                            disabled={!(this.state.name)}
+                            onClick={this.searchByName}
+                        >
+                            Search
+              </FormBtn>
+                    </form>
+                    <br />
+                    {this.state.foundHorse ? (
+                        <div>
+                            {this.renderSearchResults()}
+                        </div>
+                    ) : (
+                            <h3>No Results to Display</h3>
+                        )}
+                </Col> */}
+                {/* 
+                End of searchByName
+                *******************************************/
+                }
+
+
+
+
+
+                {/* 
+                Search by NAME: 
+                This form searches the db by NAME only.
+                ------------------------------------ */
+                }
                 <Col size="md-6 sm-12">
+                    <Jumbotron>
+                        <h1>Search by Sire </h1>
+                    </Jumbotron>
+                    <form>
+                        <Input
+                            value={this.state.sire}
+                            onChange={this.handleInputChange}
+                            name="sire"
+                            placeholder="Sire (required)"
+                        />
+                        <FormBtn
+                            disabled={!(this.state.sire)}
+                            onClick={this.searchBySire}
+                        >
+                            Search
+          </FormBtn>
+                    </form>
+                    <br />
+                    {this.state.foundHorse.length ? (
+                        <div>
+                            {this.renderSearchResults()}
+                        </div>
+                    ) : (
+                            <h3>No Results to Display</h3>
+                        )}
+                </Col>
+                {/* 
+            End of searchByName
+            *******************************************/
+                }
+
+
+
+
+               {/* 
+                Add a Horse form: 
+                This form adds a HORSE to the db.
+                ------------------------------------ */
+                }
+
+
+                {/* <Col size="md-6 sm-12">
                     <Jumbotron>
                         <h1>Add a Horse </h1>
                     </Jumbotron>
@@ -128,8 +261,23 @@ class Horses extends Component {
                             Add Horse
               </FormBtn>
                     </form>
-                </Col>
-                <Col size="md-6 sm-12">
+                </Col> */}
+
+                {/* 
+                End of Add Horse form
+                *******************************************/
+                }
+
+
+
+
+
+
+                {/* 
+                Code of BLock displays ALL DB of Caballus: 
+                ------------------------------------ */
+                }
+                {/* <Col size="md-6 sm-12">
                     <Jumbotron>
                         <h1>Horses dB</h1>
                     </Jumbotron>
@@ -149,24 +297,57 @@ class Horses extends Component {
                     ) : (
                             <h3>No Results to Display</h3>
                         )}
-                </Col>
+                </Col> */}
+                {/* 
+                End of db Display
+                *******************************************/
+                }
 
-                <Col size="md-6 sm-12">
+
+
+
+
+
+                {/* 
+                Code of BLock displays Weanlings: 
+                ------------------------------------ */
+                }
+
+                {/* <Col size="md-6 sm-12">
                     <Jumbotron>
                         <h1>Weanlings</h1>
                     </Jumbotron>
-                    {this.state.horses ? ( <div>{this.weanlings()}</div>) : (
-                            <h3>No Results to Display</h3>
-                        )}
-                </Col>
+                    {this.state.horses ? (<div>{this.weanlings()}</div>) : (
+                        <h3>No Results to Display</h3>
+                    )}
+                </Col> */}
+
+                {/* End of Weanlings
+                ******************************************* */}
+
+
+
+
+
+
+
+                {/* 
+                Code of BLock displays Yearlings: 
+                ------------------------------------ */
+                }
+
+                {/*
                 <Col size="md-6 sm-12">
                     <Jumbotron>
                         <h1>Yearlings</h1>
                     </Jumbotron>
-                    {this.state.horses ? ( <div>{this.yearlings()}</div>) : (
-                            <h3>No Results to Display</h3>
-                        )}
-                </Col>
+                    {this.state.horses ? (<div>{this.yearlings()}</div>) : (
+                        <h3>No Results to Display</h3>
+                    )}
+                </Col> */}
+
+                {/* End of Yearlings
+                ******************************************* */}
 
             </Row>
         );
