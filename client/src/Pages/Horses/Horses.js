@@ -228,17 +228,7 @@ class Horses extends Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
-                {/* 
+               {/* 
                 Add a Horse form: 
                 This form adds a HORSE to the db.
                 ------------------------------------ */
@@ -350,6 +340,11 @@ class Horses extends Component {
 
                 {/* End of Weanlings
                 ******************************************* */}
+
+
+
+
+
 
 
                 {/* 

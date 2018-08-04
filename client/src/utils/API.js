@@ -13,10 +13,10 @@ export default {
     return axios.get("/api/horses/name/" + name);
   },
   getHorseBySire: function(name) {
-    return axios.get("/api/horses/name/" + name);
+    return axios.get("/api/horses/name/" + sire);
   },
   getHorseByMare: function(name) {
-    return axios.get("/api/horses/name/" + name);
+    return axios.get("/api/horses/name/" + mare);
   },
 
   // Deletes the book with the given id
