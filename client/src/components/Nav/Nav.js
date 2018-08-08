@@ -9,7 +9,7 @@ const Navbar = () => (
 
     <div className="navbar-nav">
       <Link to="/" className="navbar">
-        <a> <span className="fa fa-bolt" /> JockeyExpress <span className="fa fa-bolt" /></a>
+        <span className="fa fa-bolt" /> JockeyExpress <span className="fa fa-bolt" />
       </Link>
     </div>
     <button

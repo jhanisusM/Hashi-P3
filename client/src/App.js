@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Horses from "./Pages/Horses";
 import Home from "../src/Pages/Home"
+import SearchHorses from "./Pages/SearchHorses";
+import AddHorse from "./Pages/AddHorse";
+import AllHorses from "./Pages/AllHorses";
 
 import Navbar from "./components/Nav"
 import Weanlings from "./Pages/Weanlings";
@@ -13,12 +16,12 @@ const App = () => (
     <div>
       <Navbar />
       <Switch>
-        {/* <Horses /> */}
+        {/*/<Horses /> */}
         <Route  path="/" component={Home} />
-        {/* 
+         
         <Route  path="/SearchHorses" component={SearchHorses} />
         <Route  path="/AddHorse" component={AddHorse} />
-      <Route  path="/AllHorses" component={AllHorses} /> */}
+      <Route  path="/AllHorses" component={AllHorses} /> 
         {/* <Route path="/Weanlings" component={Weanlings} /> */}
         {/* <Route  path="/Yearlings" component={Yearlings} />
         <Route  path="/About" component={About} /> */}
