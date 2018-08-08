@@ -9,7 +9,11 @@ class Home extends Component {
         return (
             <Container>
                 <Row>
+                   
                     <Col size="md-12">
+                    <br />
+                    <br />
+                    <br />
                         <Card title="Welcome to JockeyExpress!" icon="">
                               
                         </Card>
