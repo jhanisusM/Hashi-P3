@@ -1,0 +1,15 @@
+form#searchform {
+    height: 300px;
+    min-width: 400px;
+    max-width: 600px;
+    background-color: white;
+}
+
+
+
+div#searchformcontainder {
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
