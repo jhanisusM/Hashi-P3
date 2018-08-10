@@ -50,7 +50,7 @@ const Navbar = () => (
         </Link>
         </li>
         <li className="nav-item">
-          <Link to="/Weanlings" className={window.location.pathname === "/Weanlings" ? "nav-link active" : "nav-link"}>
+          <Link to="/Weanlings" className={window.location.pathname === "Weanlings" ? "nav-link active" : "nav-link"}>
             <span className="fa fa-th-list" />  Weanlings
         </Link>
         </li>

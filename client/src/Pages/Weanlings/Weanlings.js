@@ -1,13 +1,41 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { List, ListItem } from "../../components/List";
+import { Col, Row, Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
-import { Row } from "../../components/Grid";
+import { List, ListItem } from "../../components/List";
+import { Input, TextArea, FormBtn } from "../../components/Form";
+import DeleteBtn from "../../components/DeleteBtn";
+import { throws } from "assert";
 
 
 
-class Weanlings extends Component {
+class Weanlings extends React.Component {
+
+    state = {
+        horses: [],
+        name: "",
+        sire: "",
+        mare: "",
+        gender: "",
+        age: ""
+    };
+
+    componentDidMount() {
+        this.loadHorses();
+    };
+
+    loadHorses = () => {
+        API.getHorses()
+        .then(res => {
+            console.log(res)
+
+            this.setState({
+                horses: res.data.filter(horse => (horse.age < 5))
+            })
+        })
+        .catch(err => console.log(err))
+    }
 
     weanlings = () => {
         const weanlings = this.state.horses.filter(horse => (horse.age >= 5));
