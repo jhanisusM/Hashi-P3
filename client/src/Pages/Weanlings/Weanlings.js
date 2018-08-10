@@ -31,14 +31,14 @@ class Weanlings extends React.Component {
             console.log(res)
 
             this.setState({
-                horses: res.data.filter(horse => (horse.age < 5))
+                horses: res.data.filter(horse => (horse.age < 2))
             })
         })
         .catch(err => console.log(err))
     }
 
     weanlings = () => {
-        const weanlings = this.state.horses.filter(horse => (horse.age >= 5));
+        const weanlings = this.state.horses.filter(horse => (horse.age >= 2));
         return (
             <List>
                 {weanlings.map(horse => (
@@ -60,6 +60,7 @@ class Weanlings extends React.Component {
 
     render() {
         return (
+            <Container>
             <Row>
 
                 {/* 
@@ -67,7 +68,10 @@ class Weanlings extends React.Component {
                 ------------------------------------ */
                 }
 
-                <Col size="md-6 sm-12">
+                <Col size="md-12">
+                <br />
+                    <br />
+                    <br />
                     <Jumbotron>
                         <h1>Weanlings</h1>
                     </Jumbotron>
@@ -79,6 +83,7 @@ class Weanlings extends React.Component {
                 {/* End of Weanlings
             ******************************************* */}
             </Row>
+            </Container>
         )
     }
 

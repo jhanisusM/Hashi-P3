@@ -19,6 +19,13 @@ class AddHorse extends React.Component {
     age: "",
 };
 
+handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+        [name]: value
+    });
+};
+
     handleFormSubmit = event => {
         event.preventDefault();
         console.log(event.name)
@@ -36,8 +43,12 @@ class AddHorse extends React.Component {
     };
     render() {
     return (
+        <Container>
         <Row>
-    <Col size="md-6 sm-12">
+    <Col size="md-12">
+              <br />
+             <br />
+             <br />
                     <Jumbotron>
                         <h1>Add a Horse </h1>
                     </Jumbotron>
@@ -81,6 +92,7 @@ class AddHorse extends React.Component {
                     </form>
                 </Col> 
                 </Row>
+                </Container>
     )
 }
 };

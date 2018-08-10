@@ -33,9 +33,14 @@ class AllHorses extends React.Component {
 
     render() {
         return(
+            <Container>
             <Row>
-                
-             <Col size="md-6 sm-12">
+
+
+             <Col size="md-12">
+             <br />
+             <br />
+             <br />
                 <Jumbotron>
                     <h1>Horses dB</h1>
                 </Jumbotron>
@@ -57,6 +62,7 @@ class AllHorses extends React.Component {
                     )}
             </Col> 
             </Row>
+            </Container>
         )
     }
 

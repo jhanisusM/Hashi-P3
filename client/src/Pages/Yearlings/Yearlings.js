@@ -29,7 +29,7 @@ class Yearlings extends React.Component{
             console.log(res)
 
             this.setState({
-                horses: res.data.filter(horse => (horse.age > 5))
+                horses: res.data.filter(horse => (horse.age > 2))
             })
         })
         .catch(err => console.log(err))
@@ -37,7 +37,7 @@ class Yearlings extends React.Component{
 
 
     yearlings = () => {
-        const yearlings = this.state.horses.filter(horse => (horse.age < 5));
+        const yearlings = this.state.horses.filter(horse => (horse.age < 2));
         return (
             <List>
                 {yearlings.map(horse => (
@@ -56,10 +56,14 @@ class Yearlings extends React.Component{
 
     render() {
         return (
+            <Container>
             <Row>
 
 
-            <Col size="md-6 sm-12">
+            <Col size="md-12">
+                     <br />
+                    <br />
+                    <br />
                 <Jumbotron>
                     <h1>Yearlings</h1>
                 </Jumbotron>
@@ -68,6 +72,7 @@ class Yearlings extends React.Component{
                 )}
             </Col> 
             </Row>
+            </Container>
         )
     }
 
