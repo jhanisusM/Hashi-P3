@@ -6,26 +6,25 @@ import SearchHorses from "./Pages/SearchHorses";
 import AddHorse from "./Pages/AddHorse";
 import AllHorses from "./Pages/AllHorses";
 
-import Navbar from "./components/Nav"
-import Weanlings from "./Pages/Weanlings";
-import Yearlings from "./Pages/Yearlings";
+import Navbar from "./components/Nav/Nav"
+import Weanlings from "./Pages/Weanlings/Weanlings";
+import Yearlings from "./Pages/Yearlings/Yearlings";
 
 
 const App = () => (
   <Router>
     <div>
       <Navbar />
-      <Switch>
+
         {/*/<Horses /> */}
-        <Route  path="/" component={Home} />
+        <Route  exact path="/" component={Home} />
          
-        <Route  path="/SearchHorses" component={SearchHorses} />
-        <Route  path="/AddHorse" component={AddHorse} />
-      <Route  path="/AllHorses" component={AllHorses} /> 
-        {/* <Route path="/Weanlings" component={Weanlings} /> */}
-        {/* <Route  path="/Yearlings" component={Yearlings} />
-        <Route  path="/About" component={About} /> */}
-      </Switch>
+        <Route exact path="/SearchHorses" component={SearchHorses} />
+        <Route exact path="/AddHorse" component={AddHorse} />
+        <Route exact path="/AllHorses" component={AllHorses} /> 
+        <Route exact path="/Weanlings" component={Weanlings} /> 
+        <Route exact path="/Yearlings" component={Yearlings} />
+        {/* <Route  path="/About" component={About} />  */}
 
     </div>
   </Router>

@@ -14,7 +14,7 @@ class Home extends Component {
                     <br />
                     <br />
                     <br />
-                        <Card title="Welcome to JockeyExpress!" icon="">
+                        <Card title="Welcome to JockeyExpress!!" icon="">
                               
                         </Card>
                     </Col>
